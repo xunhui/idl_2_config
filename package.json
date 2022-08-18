@@ -1,0 +1,80 @@
+{
+	"name": "idl-2-config",
+	"displayName": "idl-2-config",
+	"description": "A tool for transforming IDL to configuration in Mid/Back-End development scenarios",
+	"publisher": "VicccCheng",
+	"version": "0.0.4",
+	"repository": "https://github.com/xunhui/IDL-2-Config",
+	"engines": {
+		"vscode": "^1.34.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:IDL2Config.parse2Form",
+		"onCommand:IDL2Config.parse2Table",
+		"onCommand:IDL2Config.parse2Both"
+	],
+	"main": "./dist/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "IDL2Config.parse2Form",
+				"title": "IDL2Config: Generate Form Options"
+			},
+			{
+				"command": "IDL2Config.parse2Table",
+				"title": "IDL2Config: Generate Table Columns"
+			},
+			{
+				"command": "IDL2Config.parse2Both",
+				"title": "IDL2Config: Generate Both Configuration"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "IDL2Config.parse2Form",
+				"title": "IDL2Config: Generate Form Options",
+				"key": "ctrl+1",
+				"mac": "cmd+1",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "IDL2Config.parse2Table",
+				"title": "IDL2Config: Generate Table Columns",
+				"key": "ctrl+2",
+				"mac": "cmd+2",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "IDL2Config.parse2Both",
+				"title": "IDL2Config: Generate Both Configuration",
+				"key": "ctrl+3",
+				"mac": "cmd+3",
+				"when": "editorTextFocus"
+			}
+		],
+		"menus": {}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run esbuild-base -- --minify",
+		"esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
+		"esbuild": "npm run esbuild-base -- --sourcemap",
+		"esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+		"test-compile": "tsc -p ./"
+	},
+	"devDependencies": {
+		"@types/node": "^16.11.7",
+		"@types/prettier": "^2.7.0",
+		"@types/vscode": "^1.34.0",
+		"@typescript-eslint/eslint-plugin": "^5.30.0",
+		"@typescript-eslint/parser": "^5.30.0",
+		"esbuild": "^0.15.5",
+		"eslint": "^8.13.0"
+	},
+	"dependencies": {
+		"prettier": "^2.7.1",
+		"typescript": "^4.7.2"
+	}
+}
